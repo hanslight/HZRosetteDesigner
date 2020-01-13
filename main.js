@@ -1,7 +1,7 @@
 // H&Z ROSETTE DESIGNER JS
 // by Hans
 // init 2018.8.1
-// last update 2018.9.10
+// last update 2018.10.9
 
 $( function () {
 

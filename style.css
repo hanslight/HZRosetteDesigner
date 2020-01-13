@@ -192,6 +192,7 @@ svg {
 .tile table td {
 	padding: 0;
 	margin: 0;
+	min-width: 3px;
 }
 .tile table .current_cell {
 	box-shadow: 0 0 0px 2px #000;
@@ -780,6 +781,10 @@ canvas {
 	fill: #e2506a;
 }
 .oric .color8 {
+	background: #4982c3;/* 蓝 */
+	fill: #4982c3;
+}
+.oric .color9 {
 	background: #090909;
 	fill: #090909;
 }
@@ -814,6 +819,10 @@ canvas {
 	fill: #e63939;
 }
 .shellac .color8 {
+	background: #1a6292;
+	fill: #1a6292;
+}
+.shellac .color9 {
 	background: #040301;
 	fill: #040301;
 }

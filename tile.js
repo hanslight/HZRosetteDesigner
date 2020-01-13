@@ -1,8 +1,8 @@
 // H&Z ROSETTE DESIGNER JS
 // by Hans
 // init 2018.8.7
-// last update 2018.9.3
-// version beta 2.6.6
+// last update 2018.10.9
+// version beta 2.7.1
 
 
 
@@ -35,6 +35,8 @@ var SVGRosetteR = new Array(),
 	SVGSize = 420;
 var SVGSoundhole;
 
+var copies = new Array();
+
 var mosaicTileH,
 	mosaicTileW,
 	lineT,
@@ -51,74 +53,348 @@ var SVGFingerboard = '<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmln
 
 
 
-
-RosetteTile = [
+/*
+RosetteTile = [ //小蒋
 	{
 		type : "line",
-		thickness : 2.4,
-		color : "color5"
+		thickness : .6,
+		color : "color9"
 	},
 	{
 		type : "line",
 		thickness : .3,
-		color : "color1"
+		color : "color3"
+	},
+	{
+		type : "line",
+		thickness : .3,
+		color : "color9"
 	},
 	{
 		type : "line",
 		thickness : .8,
-		color : "color1"
+		color : "color4"
 	},
 	{
 		type : "line",
 		thickness : .3,
-		color : "color1"
+		color : "color9"
+	},
+	{
+		type : "line",
+		thickness : .3,
+		color : "color3"
+	},
+	{
+		type : "line",
+		thickness : .6,
+		color : "color9"
+	},
+	{
+		type : "line",
+		thickness : .5,
+		color : "color6"
+	},
+	{
+		type : "line",
+		thickness : 1.8,
+		color : "color9"
+	},
+	{
+		type : "line",
+		thickness : .5,
+		color : "color3"
 	},
 	{
 		type : "mosaic",
-		cellW : .8,
-		cellH : .8,
-		col : 8,
-		row : 6,
-		color : ["color7","color4","color1","color4","color1","color4","color1","color4","color1","color1","color5","color1","color4","color1","color1","color4","color1","color4","color1","color1","color1","color1","color1","color1","color1","color1","color4","color1","color1","color1","color1","color1","color1","color1","color1","color1","color1","color1","color1","color1","color1","color4","color1","color1","color5","color1","color1","color6"]
+		cellW : .5,
+		cellH : .5,
+		col : 11,
+		row : 12,
+		color : ["color7","color8","color1","color1","color1","color9","color1","color1","color1","color8","color7","color7","color8","color1","color1","color9","color9","color9","color1","color1","color8","color7","color8","color7","color1","color9","color1","color1","color1","color9","color1","color7","color8","color1","color1","color9","color9","color1","color1","color1","color9","color9","color1","color1","color1","color9","color1","color7","color1","color9","color1","color7","color1","color9","color1","color9","color1","color1","color1","color7","color9","color7","color1","color1","color1","color9","color1","color1","color1","color1","color9","color8","color9","color1","color1","color1","color1","color1","color1","color1","color9","color9","color8","color9","color9","color1","color1","color1","color1","color1","color9","color1","color9","color7","color9","color1","color9","color1","color1","color9","color9","color1","color1","color9","color7","color9","color1","color1","color9","color9","color9","color1","color1","color1","color1","color9","color1","color1","color1","color1","color9","color1","color1","color1","color1","color1","color9","color1","color1","color1","color1","color1"]
+	},
+	{
+		type : "line",
+		thickness : .5,
+		color : "color3"
+	},
+	{
+		type : "line",
+		thickness : 1.8,
+		color : "color9"
+	},
+	{
+		type : "line",
+		thickness : .5,
+		color : "color6"
+	},
+	{
+		type : "line",
+		thickness : .6,
+		color : "color9"
 	},
 	{
 		type : "line",
 		thickness : .3,
-		color : "color1"
-	},
-	{
-		type : "mosaic",
-		cellW : .8,
-		cellH : .8,
-		col : 8,
-		row : 6,
-		color : ["color7","color1","color1","color1","color1","color1","color1","color1","color1","color1","color1","color1","color1","color1","color1","color1","color1","color1","color1","color1","color1","color1","color1","color1","color1","color1","color1","color1","color1","color1","color1","color1","color1","color1","color1","color1","color1","color1","color1","color1","color1","color1","color1","color1","color1","color1","color1","color7"]
+		color : "color3"
 	},
 	{
 		type : "line",
 		thickness : .3,
-		color : "color1"
+		color : "color9"
 	},
 	{
 		type : "line",
 		thickness : .8,
-		color : "color1"
+		color : "color4"
 	},
 	{
 		type : "line",
 		thickness : .3,
-		color : "color1"
+		color : "color9"
 	},
 	{
 		type : "line",
-		thickness : 2.4,
-		color : "color5"
+		thickness : .3,
+		color : "color3"
+	},
+	{
+		type : "line",
+		thickness : .6,
+		color : "color9"
 	}
 ]
 
+*/
+
+/*
+RosetteTile = [ // 小蒋 翻转
+	{
+		type : "line",
+		thickness : .6,
+		color : "color9"
+	},
+	{
+		type : "line",
+		thickness : .3,
+		color : "color3"
+	},
+	{
+		type : "line",
+		thickness : .3,
+		color : "color9"
+	},
+	{
+		type : "line",
+		thickness : .8,
+		color : "color4"
+	},
+	{
+		type : "line",
+		thickness : .3,
+		color : "color9"
+	},
+	{
+		type : "line",
+		thickness : .3,
+		color : "color3"
+	},
+	{
+		type : "line",
+		thickness : .6,
+		color : "color9"
+	},
+	{
+		type : "line",
+		thickness : .5,
+		color : "color6"
+	},
+	{
+		type : "line",
+		thickness : 1.8,
+		color : "color9"
+	},
+	{
+		type : "line",
+		thickness : .5,
+		color : "color3"
+	},
+	{
+		type : "mosaic",
+		cellW : .5,
+		cellH : .5,
+		col : 11,
+		row : 12,
+		color : [
+				"color1","color1","color1","color1","color1","color9","color1","color1","color1","color1","color1",
+				"color9","color1","color1","color1","color1","color9","color1","color1","color1","color1","color9",
+				"color9","color9","color1","color1","color9","color7","color9","color1","color1","color9","color9",
+				"color1","color1","color9","color1","color9","color7","color9","color1","color9","color1","color1",
+				"color1","color1","color1","color9","color9","color8","color9","color9","color1","color1","color1",
+				"color1","color1","color1","color1","color9","color8","color9","color1","color1","color1","color1",
+				"color9","color1","color1","color1","color7","color9","color7","color1","color1","color1","color9",
+				"color1","color9","color1","color7","color1","color9","color1","color7","color1","color9","color1",
+				"color1","color1","color9","color9","color1","color1","color1","color9","color9","color1","color1",
+				"color8","color7","color1","color9","color1","color1","color1","color9","color1","color7","color8",
+				"color7","color8","color1","color1","color9","color9","color9","color1","color1","color8","color7",
+				"color7","color8","color1","color1","color1","color9","color1","color1","color1","color8","color7",
+				]
+	},
+	{
+		type : "line",
+		thickness : .5,
+		color : "color3"
+	},
+	{
+		type : "line",
+		thickness : 1.8,
+		color : "color9"
+	},
+	{
+		type : "line",
+		thickness : .5,
+		color : "color6"
+	},
+	{
+		type : "line",
+		thickness : .6,
+		color : "color9"
+	},
+	{
+		type : "line",
+		thickness : .3,
+		color : "color3"
+	},
+	{
+		type : "line",
+		thickness : .3,
+		color : "color9"
+	},
+	{
+		type : "line",
+		thickness : .8,
+		color : "color4"
+	},
+	{
+		type : "line",
+		thickness : .3,
+		color : "color9"
+	},
+	{
+		type : "line",
+		thickness : .3,
+		color : "color3"
+	},
+	{
+		type : "line",
+		thickness : .6,
+		color : "color9"
+	}
+]
+*/
 
 
 
+RosetteTile = [ // EASY SAMPLE
+	{
+		type : "line",
+		thickness : .8,
+		color : "color5"
+	},
+	{
+		type : "line",
+		thickness : .4,
+		color : "color1"
+	},
+	{
+		type : "line",
+		thickness : 1.8,
+		color : "color5"
+	},
+	{
+		type : "line",
+		thickness : .4,
+		color : "color1"
+	},
+	{
+		type : "line",
+		thickness : .8,
+		color : "color6"
+	},
+	{
+		type : "line",
+		thickness : .4,
+		color : "color1"
+	},
+	{
+		type : "mosaic",
+		cellW : 1,
+		cellH : 1,
+		col : 7,
+		row : 4,
+		color : [
+				"color1","color1","color1","color1","color1","color1","color1",
+				"color1","color1","color1","color1","color1","color1","color1",
+				"color1","color1","color1","color1","color1","color1","color1",
+				"color1","color1","color1","color1","color1","color1","color1"
+				]
+	},
+	{
+		type : "mosaic",
+		cellW : 4,
+		cellH : 1,
+		col : 2,
+		row : 3,
+		color : [
+				"color1","color5",
+				"color5","color1",
+				"color1","color5",
+				]
+	},
+	{
+		type : "mosaic",
+		cellW : 1,
+		cellH : 1,
+		col : 7,
+		row : 4,
+		color : [
+				"color1","color1","color1","color1","color1","color1","color1",
+				"color1","color1","color1","color1","color1","color1","color1",
+				"color1","color1","color1","color1","color1","color1","color1",
+				"color1","color1","color1","color1","color1","color1","color1"
+				]
+	},
+	{
+		type : "line",
+		thickness : .4,
+		color : "color1"
+	},
+	{
+		type : "line",
+		thickness : .8,
+		color : "color6"
+	},
+	{
+		type : "line",
+		thickness : .4,
+		color : "color1"
+	},
+	{
+		type : "line",
+		thickness : 1.8,
+		color : "color5"
+	},
+	{
+		type : "line",
+		thickness : .4,
+		color : "color1"
+	},
+	{
+		type : "line",
+		thickness : .8,
+		color : "color5"
+	}
+]
 
 
 
@@ -164,12 +440,12 @@ var preview = {
 		var r1 = Math.pow ( ( w * w / 4 + y0 * y0 ) , .5 ),
 			b = r * y0 / r1 + h - r; // because b is accurater than a.
 			m = h - b;
-		var angle = Math.asin( w / 2 / r1 ) * 2 / Math.PI * 180;
+		var angle = Math.asin( w / 2 / r1 ) * 2 / Math.PI * 180; // deg
 		return {"m":m,"r1":r1,"angle":angle};
 	},
 
 	drawRing : function(rout,rin,ids,color) {
-			
+		
 		var hd = .5523;
 		var p = "M "+rout+",0 c "+(-hd*rout)+",0, "+(-rout)+","+(rout-hd*rout)+", "+(-rout)+","+rout+" c 0,"+(hd*rout)+", "+(rout-hd*rout)+","+rout+", "+rout+","+rout+" c "+(hd*rout)+",0, "+rout+","+(-rout+hd*rout)+", "+rout+","+(-rout)+" c 0,"+(-hd*rout)+", "+(-rout+hd*rout)+","+(-rout)+", "+(-rout)+","+-rout+" z M "+rout+","+(rout-rin)+" c "+(hd*rin)+",0, "+rin+","+(rin-hd*rin)+", "+rin+","+rin+" c 0,"+(hd*rin)+", "+(-rin+hd*rin)+","+rin+", "+(-rin)+","+rin+" c "+(-hd*rin)+",0, "+(-rin)+","+(-rin+hd*rin)+", "+(-rin)+","+(-rin)+" c 0,"+(-hd*rin)+", "+(rin-hd*rin)+","+(-rin)+", "+rin+","+(-rin)+" z";
 		
@@ -190,7 +466,7 @@ var preview = {
 		c 0,-hd*rin,		rin-hd*rin,-rin, 			rin,-rin
 		z
 		*/
-			
+	
 	},
 
 	drawMosaic : function(rout,ids) {
@@ -208,11 +484,44 @@ var preview = {
 			var cell = drawRosette.rect(w,h).move(x,y).addClass(color);
 			SVGRosetteR[ids].add(cell);
 		};
-		// var mask = drawRosette.mask().add(SVGRosetteR[ids]);
-		// var 
+
+		return preview
 	},
 
+	patternMosaic : function (rout,angle,ids) {
 
+		var startX1,startY1,endX1,endY1,startX2,startY2,endX2,endY2;
+		var RT = RosetteTile[ids],
+			W = RT.cellW*RT.col*previewScale,
+			H = RT.cellH*RT.row*previewScale;
+		var a = angle/180 * Math.PI, // rad
+			rin = (rout - H) / Math.cos(a/2);
+
+		var laf = angle < 180 ? 0 : 1;
+		startX1 = SVGSize/2 + W/2;
+		startY1 = SVGSize/2 + Math.cos(a/2) * rout;
+		endX1 = -W;
+		endY1 = 0;
+		startX2 = SVGSize/2 - Math.tan(a/2) * (rout-H);
+		startY2 = SVGSize/2 + rout - H;
+		endX2 = 2 * Math.tan(a/2) * (rout-H);
+		endY2 = 0;
+
+		var d = "M "+startX1+" "+startY1+" a "+rout+" "+rout+" 0 "+laf+" 1 "+endX1+" "+endY1+" L "+startX2+" "+startY2+" a "+rin+" "+rin+" 0 "+laf+" 0 "+endX2+" "+endY2+" Z";
+
+		var fan = drawRosette.path(d);
+		var fanClipper = drawRosette.clip().add(fan);
+		var cut = SVGRosetteR[ids].clipWith(fanClipper);
+
+		copies[ids] = drawRosette.group();
+		var count = (Math.floor(360/angle)-1)/2;
+		for (i=1;i<=count;i++) {
+			copies[ids].add(cut.clone().rotate(angle*i,SVGSize/2, SVGSize/2));
+			copies[ids].add(cut.clone().rotate(-angle*i,SVGSize/2, SVGSize/2));
+		}
+		
+		return preview
+	},
 
 	initRosette : function() {
 		for (var j = 0; j <= RosetteTile.length - 1; j++) {
@@ -223,9 +532,10 @@ var preview = {
 					var h = mosaicTileH,
 						w = mosaicTileW;
 					i=0;n=0;
-					var r1 = preview.findM(w,h).r1;
+					var r1 = preview.findM(w,h).r1,
+						a = preview.findM(w,h).angle;
 					// preview.drawRing(r1*previewScale,r*previewScale,j);
-					preview.drawMosaic(r1*previewScale,j);
+					preview.drawMosaic(r1*previewScale,j).patternMosaic(r1*previewScale,a,j);
 					r = r1;
 					break;
 				case "line" :
@@ -304,7 +614,7 @@ var preview = {
 		return preview;
 	},
 	
-	editMosaic : function(rout,ids,item) {
+	editMosaic : function(rout,angle,ids,item) {
 		var RT = RosetteTile[ids];
 
 		/*if (item == "color") {
@@ -317,7 +627,7 @@ var preview = {
 		var w = RT.cellW*previewScale,
 			h = RT.cellH*previewScale;
 		var total = RT.col * RT.row;
-		SVGRosetteR[ids].clear();
+		SVGRosetteR[ids].remove();
 		SVGRosetteR[ids] = drawRosette.group();
 		
 		for (i = 1; i <= total; i++) {
@@ -330,6 +640,38 @@ var preview = {
 			SVGRosetteR[ids].add(cell);
 		};
 		SVGRosetteR[ids].back();
+
+		copies[ids].remove();
+
+		var W = w*RT.col;
+			H = h*RT.row;
+		
+		var startX1,startY1,endX1,endY1,startX2,startY2,endX2,endY2;
+		var a = angle/180 * Math.PI, // rad
+			rin = (rout - H) / Math.cos(a/2);
+
+		var laf = angle < 180 ? 0 : 1;
+		startX1 = SVGSize/2 + W/2;
+		startY1 = SVGSize/2 + Math.cos(a/2) * rout;
+		endX1 = -W;
+		endY1 = 0;
+		startX2 = SVGSize/2 - Math.tan(a/2) * (rout-H);
+		startY2 = SVGSize/2 + rout - H;
+		endX2 = 2 * Math.tan(a/2) * (rout-H);
+		endY2 = 0;
+
+		var d = "M "+startX1+" "+startY1+" a "+rout+" "+rout+" 0 "+laf+" 1 "+endX1+" "+endY1+" L "+startX2+" "+startY2+" a "+rin+" "+rin+" 0 "+laf+" 0 "+endX2+" "+endY2+" Z";
+
+		var fan = drawRosette.path(d);
+		var fanClipper = drawRosette.clip().add(fan);
+		var cut = SVGRosetteR[ids].clipWith(fanClipper);
+
+		copies[ids] = drawRosette.group();
+		var count = (Math.floor(360/angle)-1)/2;
+		for (j=1;j<=count;j++) {
+			copies[ids].add(cut.clone().rotate(angle*j,SVGSize/2, SVGSize/2));
+			copies[ids].add(cut.clone().rotate(-angle*j,SVGSize/2, SVGSize/2));
+		}
 	},
 
 
@@ -347,9 +689,10 @@ var preview = {
 					var h = mosaicTileH,
 						w = mosaicTileW;
 					i=0;n=0;
-					var r1 = preview.findM(w,h).r1;
+					var r1 = preview.findM(w,h).r1,
+						angle = preview.findM(w,h).angle;
 					//preview.editRing(r1*previewScale,r*previewScale,j);
-					preview.editMosaic(r1*previewScale,j,item);
+					preview.editMosaic(r1*previewScale,angle,j,item);
 					r = r1;
 					break;
 				case "line" :
