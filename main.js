@@ -171,6 +171,7 @@ $("#btn_color").bind("click", function() {
 	$(".mask").show();
 	$(".color_sheet").show(120);
 	setTimeout(scrolltoCurColor,120);
+	return false;
 });
 
 
@@ -234,9 +235,14 @@ $(".tile_box").bind("click", clearSelectCell);
 
 
 
+
+
+// 取色
+$("#btn_eyedropper").bind("click", pickColor);
+
 // 应用按钮
 $("#btn_apply").bind("click", function() {
-	applyStyle();
+	fillColor();
 	return false;
 });
 
@@ -284,33 +290,63 @@ $("#mosaicW .number_m").bind("click",function() {
 	var v = $(this).siblings("input").val();
 	v = inputStepMinus(v,.1,.1);
 	$(this).siblings("input").val(v);
+	RosetteTile[curCell.part].cellW = v;
+	setTile();
+	selectCell(curCell);
+	refreshCanvas();
+	resizeCanvas();
 });
 $("#mosaicW .number_a").bind("click",function() {
 	var v = $(this).siblings("input").val();
 	v = inputStepAdd(v,.1,10);
 	$(this).siblings("input").val(v);
+	RosetteTile[curCell.part].cellW = v;
+	setTile();
+	selectCell(curCell);
+	refreshCanvas();
+	resizeCanvas();
 });
 
 $("#mosaicH .number_m").bind("click",function() {
 	var v = $(this).siblings("input").val();
 	v = inputStepMinus(v,.1,.1);
 	$(this).siblings("input").val(v);
+	RosetteTile[curCell.part].cellH = v;
+	setTile();
+	selectCell(curCell);
+	refreshCanvas();
+	resizeCanvas();
 });
 $("#mosaicH .number_a").bind("click",function() {
 	var v = $(this).siblings("input").val();
 	v = inputStepAdd(v,.1,10);
 	$(this).siblings("input").val(v);
+	RosetteTile[curCell.part].cellH = v;
+	setTile();
+	selectCell(curCell);
+	refreshCanvas();
+	resizeCanvas();
 });
 
 $("#lineT .number_m").bind("click",function() {
 	var v = $(this).siblings("input").val();
 	v = inputStepMinus(v,.1,.1);
 	$(this).siblings("input").val(v);
+	RosetteTile[curCell.part].thickness = v;
+	setTile();
+	selectCell(curCell);
+	refreshCanvas();
+	resizeCanvas();
 });
 $("#lineT .number_a").bind("click",function() {
 	var v = $(this).siblings("input").val();
 	v = inputStepAdd(v,.1,10);
 	$(this).siblings("input").val(v);
+	RosetteTile[curCell.part].thickness = v;
+	setTile();
+	selectCell(curCell);
+	refreshCanvas();
+	resizeCanvas();
 });
 
 //////
@@ -359,12 +395,10 @@ $(".tool_tab").bind("click", function () {
 	if (s=="2") {
 		selectCell(curCell);
 		$(".cell_handle").show();
-		// $("td").bind("click",tdClick);
 		$(document).bind("keydown",keyboardOperation);
 	} else {
 		clearSelectCell();
 		$(".cell_handle").hide();
-		// $("td").unbind("click");
 		$(document).unbind("keydown");
 	};
 });

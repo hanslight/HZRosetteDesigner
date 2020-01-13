@@ -15,7 +15,7 @@ html, body {
 	height: 100%;
 	overflow: hidden;
 	color: white;
-	font-family: roboto,Pingfang SC,'微软雅黑';
+	font-family: roboto,Pingfang SC,helvetica,'微软雅黑';
 	font-size: 12px;
 	font-weight: normal;
 	color: #ddd;
@@ -53,7 +53,6 @@ ul, li {
 	border: solid 1px #2a2a2a;
 	border-radius: 3px;
 	text-align: center;
-	/*box-shadow: 0 2px 4px rgba(0,0,0,.2);*/
 }
 .btn_primary {
 	font-weight: bold;
@@ -80,6 +79,25 @@ ul, li {
 	transform-origin: center bottom;
 	opacity: .92;
 }
+.btn_group_primary {
+	display: inline-block;
+	background: #333;
+	border-radius: 3px;
+	box-shadow: 0 2px 5px rgba(0,0,0,.2);
+}
+.btn_group_primary .btn_primary {
+	box-shadow: none;
+	border-top-left-radius: 0;
+	border-top-right-radius: 0;
+}
+.btn_group_primary .adornment {
+	border-radius: 3px;
+	border-bottom-left-radius: 0;
+	border-bottom-right-radius: 0;
+	border: solid 1px #222;
+	margin-bottom: -1px;
+}
+
 
 
 
@@ -236,7 +254,6 @@ header .menu_btn:active {
 	width: 28px;
 	line-height: 38px;
 	padding: 0;
-	/*vertical-align: middle;*/
 }
 .number_input .number_m {
 	border-top-right-radius: 0;
@@ -252,62 +269,30 @@ header .menu_btn:active {
 
 
 
-
-.tool_content_2 .left_pad {
-	position: absolute;
-	width: 45%;
-	max-width: 168px;
-	height: 142px;
-	top: 8px;
-	left: 8px;
-	padding-left: 5px;
-	text-align: left;
+.tool_content_2 table {
+	width: 100%;
+	height: 100%;
+	padding: 1px 3px;
+	border-spacing: 5px;
+}
+.tool_content_2 .pad_1 {
+	position: relative;
+	width: 164px;
 	background: #313131;
 	border: solid 1px #2a2a2a;
 	border-radius: 4px;
-	/*box-shadow: 6px 0 0 -5px #2a2a2a;*/
+	padding: 0;
+	vertical-align: top;
 }
-.tool_content_2 .right_pad {
-	width: 55%;
-	/*min-width: 180px;*/
-	max-width: 200px;
-	text-align: right;
-	/*height: 100%;*/
-	right: 8px;
-	top: 0;
-	position: absolute;
+.tool_content_2 .pad_2 {
+	position: relative;
+	width: 46px;
+	padding: 0;
+}
+.tool_content_2 .pad_3 {
 }
 
 
-
-
-.tool_content_2 #btn_color{
-	display: block;
-	/*max-width: 100%;*/
-	/*width: 100%;*/
-	height: 38px;
-	padding-right: 14px;
-	margin-top: 5px;
-	margin-right: 5px;
-	font-size: 13px;
-	line-height: 38px;
-	text-align: left;
-}
-.tool_content_2 #btn_color .btn_txt {
-	/*float: left;*/
-	/*display: block;*/
-	margin-left: 12px;
-	text-align: center;
-}
-.tool_content_2 .color_preview {
-	display: inline-block;
-	width: 16px;
-	height: 30px;
-	margin: 3px 0 0 3px;
-	border: solid 1px #222;
-	border-radius: 2px;
-	float: left;
-}
 
 
 .tool_content_2 .form {
@@ -317,110 +302,137 @@ header .menu_btn:active {
 }
 .tool_content_2 .line {
 	height: 40px;
-	/*margin: 0 8px;*/
 	padding-top: 5px;
-	/*border-bottom: solid 1px #2a2a2a;*/
 	text-align: right;
 	vertical-align: middle;
 }
 
-.left_pad .icon {
+.tool_content_2 .current_cell_info {
+	overflow: hidden;
+	white-space: nowrap;
+	text-align: left;
+	padding: 6px;
+	font-weight: 300;
+	font-family: '微软雅黑',helvetica,monospace;
+	font-size: 11px;
+	color: #777;
+}
+.tool_content_2 .info_left {
+	white-space: nowrap;
+	display: inline-block;
+	overflow: hidden;
+	width: 68px;
+	border-right: solid 1px #2b2b2b;
+}
+.tool_content_2 .info_right {
+	white-space: nowrap;
+	overflow: hidden;
+	display: inline-block;
+	margin-left: 5px;
+}
+.tool_content_2 .current_cell_info h3 {
+	font-size: 10px;
+	color: #555;
+	margin-bottom: 2px;
+	text-transform: uppercase;
+}
+.tool_content_2 .current_cell_info .info_left span {
+	margin: 0 2px;
+}
+.tool_content_2 #cell_coordinate {
+	display: none;
+}
+
+
+.tool_content_2 .pad_1 .icon {
 	display: inline-block;
 	width: 25px;
 	height: 26px;
-	margin-right: 9px;
+	margin-right: 5px;
 	background-image: url(images/icon_dimens.svg);
 	background-size: 100px;
 	background-position-y: top;
 	vertical-align: middle;
 }
-.left_pad .icon_w {
+.tool_content_2 .pad_1 .icon_w {
 	background-position-x: left;
 }
-.left_pad .icon_h {
+.tool_content_2 .pad_1 .icon_h {
 	background-position-x: -25px;
 }
-.left_pad .icon_t {
+.tool_content_2 .pad_1 .icon_t {
 	background-position-x: -50px;
 }
 
-.left_pad #btn_eyedropper {
-	display: inline-block;
+
+
+
+.tool_content_2 .pad_2 #btn_eyedropper {
+	position: absolute;
+	display: block;
+	width: 44px;
+	height: 30px;
+	top: 0;
+	right: 0;
+}
+.tool_content_2 .pad_2 #btn_eyedropper span {
+	display: block;
 	width: 25px;
 	height: 26px;
+	margin: 2px auto;
 	background-image: url(images/icon_dimens.svg);
 	background-position: right;
 	background-size: 100px;
 }
-
-
-
-
-
-.tool_content_2 #btn_apply {
-	height: 38px;
-	padding: 0 16px;
-	margin-top: 8px;
-	margin-left: 5px;
-	/*float: right;*/
+.tool_content_2 .pad_2 .btn_group_primary {
+	position: absolute;
+	bottom: 0;
+	right: 0;
+	width: 46px;
+}
+.tool_content_2 .pad_2 #btn_apply {
+	display: block;
+	height: 74px;/*+1 for border collapse*/
 	font-size: 15px;
-	line-height: 38px;
+	line-height: 18px;
+	position: relative;
 }
-.tool_content_2 .current_cell_info {
-	display: inline;
-	margin-left: 2px;
-	font-weight: 300;
-	font-size: 11px;
-	/*letter-spacing: 2px;*/
-	color: #777;
+.tool_content_2 .pad_2 #btn_apply .btn_txt {
+	position: absolute;
+	right: 6px;
+	bottom: 6px;
 }
-.tool_content_2 .current_cell_info span {
-	margin: 0 2px;
+.tool_content_2 .pad_2 #btn_color {
+	display: block;
+}
+.tool_content_2 .pad_2 #btn_color .color_preview {
+	display: block;
+	height: 16px;
+	margin: 4px;
+	border: solid 1px #222;
+	border-radius: 2px;
 }
 
 
 
-.tool_content_2 .keyboard {
-	clear: both;
-	margin-left: 4px;
-	padding-top: 21px;
-}
+
+
+
+
 .tool_content_2 .key {
-	padding: 0;
-	margin: 0;
-}
-.tool_content_2 .center_keyboard {
-	width: 36.5%;
-	float: right;
+	display: table-cell;
 }
 .tool_content_2 #key_left {
-	width: 22.5%;
-	height: 81px;
-	bottom: 0px;
-	left: 0;
-	float: right;
-	margin-right: 5px;
+	width: 50px;
 }
 .tool_content_2 #key_right {
-	width: 22.5%;
-	height: 81px;
-	bottom: 0px;
-	left: 122px;
-	float: right;
-	margin-left: 5px;
+	width: 50px;
 }
 .tool_content_2 #key_up {
-	width: 100%;
-	height: 38px;
-	bottom: 42px;
-	left: 48px;
-	margin-bottom: 5px;
+	height: 35px;
 }
 .tool_content_2 #key_down {
-	width: 100%;
-	height: 38px;
-	bottom: 0;
-	left: 48px;
+	height: 35px;
 }
 
 .tool_content_2 .key .icon {
@@ -648,9 +660,9 @@ header .menu_btn:active {
 	position: absolute;
 	z-index: 9;
 	overflow: scroll;
-	bottom: 187px;
-	left: 8px;
-	max-height: 220px;
+	bottom: 154px;
+	right: 8px;
+	max-height: 285px;
 	background: #333;
 	border: solid 1px #222;
 	border-radius: 3px;

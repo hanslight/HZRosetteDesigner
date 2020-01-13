@@ -1,7 +1,7 @@
 <!--
 H&Z ROSETTE DESIGNER
 by Hans / H&Z LIFE
-version 2018/8/20
+version 2018/8/21
 -->
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -17,7 +17,7 @@ version 2018/8/20
 	<link rel="stylesheet" type="text/css" href="style.css"/>
 	<link rel="stylesheet" type="text/css" href="iconfont/iconfont.css"/>
 
-	<title>H&amp;Z Rosette Designer beta 2.0</title>
+	<title>H&amp;Z Rosette Designer beta 2.5</title>
 
 </head>
 
@@ -50,16 +50,25 @@ version 2018/8/20
 	</div>
 
 
+
 	<div class="tool_contents">
 
 		<div class="tool_content tool_content_2 tool_content_current">
-			<div class="left_pad">
+			<table>
+			<tr>
+			<td class="pad_1" rowspan="3">
 
-				<div id="btn_eyedropper" class="btn"></div>
-					<!-- <div id="btn_color" class="btn">
-						<span class="color_preview color1"></span>
-						<span class="btn_txt">name</span>
-					</div> -->
+				<div class="current_cell_info">
+					<div class="info_left">
+						<h3 id="part_type">TYPE</h3>
+						[<span id="part_num">0</span>]<span id="cell_coordinate"></span>
+					</div>
+					<div class="info_right">
+						<h3>COLOR</h3>
+						<span id="part_color">-</span>
+					</div>
+				</div>
+
 				<div class="form">
 					<div class="line" style="display: none;">
 						<span class="icon icon_w"></span><div id="mosaicW" class="number_input"><span class="btn number_m">-</span><input type="number" value="0.8" disabled="disabled" /><span class="adornment">mm</span><span class="btn number_a">+</span></div>
@@ -72,25 +81,37 @@ version 2018/8/20
 					</div>
 				</div>
 
-			</div>
-			<div class="right_pad">
+			</td>
+			<td class="pad_3" rowspan="3"></td>
+			<td colspan="2" class="btn key" id="key_up"><span class="icon"></span></td>
+			<td class="pad_3" rowspan="3"></td>
+			<td class="pad_2" rowspan="3">
 
-				<div id="btn_apply" class="btn btn_primary" title="(space / enter)">
-					<div class="current_cell_info">[<span id="current_part_num"></span>]<span id="current_cell_co"></span></div>
-					<span class="btn_txt">应用</span>
-				</div>
-
-				<div class="keyboard">
-					<button class="btn key" id="key_right"><span class="icon"></span></button>
-					<div class="center_keyboard">
-						<button class="btn key" id="key_up"><span class="icon"></span></button>
-						<button class="btn key" id="key_down"><span class="icon"></span></button>
+				<!-- 取色按钮 -->
+				<div id="btn_eyedropper" class="btn" title="(BackSpace)"><span></span></div>
+				
+				<!-- 填色按钮 -->
+				<div class="btn_group_primary">
+					<div id="btn_color" class="btn btn_primary adornment" title="(Tab)"><span class="color_preview color1"></span></div>
+					<div id="btn_apply" class="btn btn_primary" title="(Space / Enter)">
+						<span class="btn_txt">填<br />色</span>
 					</div>
-					<button class="btn key" id="key_left"><span class="icon"></span></button>
 				</div>
 
-			</div>
+			</td>
+			</tr>
+			<tr>
+				<td class="btn key" id="key_left"><span class="icon"></span></td>
+				<td class="btn key" id="key_right"><span class="icon"></span></td>
+			</tr>
+			<tr>
+				<td colspan="2" class="btn key" id="key_down"><span class="icon"></span></td>
+			</tr>
+			</table>
 		</div>
+
+
+
 
 		<div class="tool_content tool_content_4 ">
 			<div class="wrapper">
@@ -118,6 +139,10 @@ version 2018/8/20
 		</div>
 
 	</div>
+
+
+
+
 	<div class="tool_tabs">
 		<ul>
 			<li id="tool_tab_2" class="tool_tab tool_tab_current"><i class="iconfont icon-design"></i></li><!--
@@ -142,9 +167,10 @@ version 2018/8/20
 		<li class="btn">提需求、提建议</li>
 		<li class="btn">💪 力挺作者「汉斯」</li>
 		<li class="spline"></li>
-		<li class="signature"><p>H·Z ROSETTE DESIGNER</p><p>beta 2.0</p></li>
+		<li class="signature"><p>H·Z ROSETTE DESIGNER</p><p>beta 2.5</p></li>
 	</ul>
 </div>
+
 
 <!-- 行列操作弹框 -->
 <div class="action_sheet">

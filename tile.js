@@ -14,7 +14,7 @@ var curCell = {
 	tdn : 0//总序号
 };
 
-var defaultColor = "color1";
+// var defaultColor = "color1";
 var selectedColor = "color1";
 var shellac = false; // 虫胶漆效果
 
@@ -252,10 +252,9 @@ var tdClick = function() {
 	}
 	// 选择td
 	clearSelectCell();
-	curCell.tdn = $("td").index($(this));
+	curCell.tdn = $("#RT td").index($(this));
 	curCell.part = parseInt($(this).parents("table").attr("id").match(/\d+/));
 	selectCell();
-
 	return false;
 }
 
@@ -274,7 +273,7 @@ var setTile = function() {
 		}
 	}
 	// 绑定cell点击
-	$("td").bind("click",tdClick);
+	$("#RT td").bind("click",tdClick);
 };
 
 
@@ -283,24 +282,17 @@ var setTile = function() {
 
 //////////// cell 样式 ////////////
 
-// 应用样式
-var applyStyle = function() {
+// 填色
+var fillColor = function() {
 	var RTcp = RosetteTile[curCell.part],
 		startn = RT.partStartIndex(curCell.part);
-	// 读取尺寸
-	var cW = $("#mosaicW input").val(),
-		cH = $("#mosaicH input").val(),
-		lT = $("#lineT input").val();
 	// 应用
 	switch (RTcp.type) {
 		case "line":
 			RTcp.color = selectedColor;
-			RTcp.thickness = lT;
 			break;
 		case "mosaic":
 			RTcp.color[curCell.tdn-startn] = selectedColor;
-			RTcp.cellW = cW;
-			RTcp.cellH = cH;
 			break;
 	}
 	setTile();
@@ -310,13 +302,10 @@ var applyStyle = function() {
 
 // 选择颜色
 var selectColor = function(colorId) {
-	//selectedColor = colorId;
+	selectedColor = colorId;
 	$(".color_sheet .color").removeClass("current_color");
 	$("#"+colorId).addClass("current_color");
 	$(".tool_content_2 .color_preview").removeClass().addClass("color_preview "+colorId);
-
-	var ct = $(".current_color").children(".color_name").html();
-	$("#btn_color .btn_txt").html(ct);
 }
 
 // 滚动到颜色
@@ -331,8 +320,21 @@ var scrolltoCurColor = function(t) {
 	}
 }
 
-
-
+// 取色
+var pickColor = function() {
+	var startn = RT.partStartIndex(curCell.part),
+		n = curCell.tdn-startn;
+	switch (RosetteTile[curCell.part].type) {
+		// 获取颜色id
+		case "mosaic":
+			var colorid = RosetteTile[curCell.part].color[n];
+			break;
+		case "line":
+			var colorid = RosetteTile[curCell.part].color;
+			break;
+	}
+	selectColor(colorid);
+}
 
 
 
@@ -342,35 +344,46 @@ var scrolltoCurColor = function(t) {
 /////////// cell 选择 ///////////
 
 var selectCell = function() {
+	var startn = RT.partStartIndex(curCell.part),
+		n = curCell.tdn-startn;
 	$("#RT td").eq(curCell.tdn).addClass("current_cell");
-	$("#current_part_num").html(curCell.part+1);
-	// 计算坐标
-	var startn = RT.partStartIndex(curCell.part);
-	if (RosetteTile[curCell.part].type==="mosaic") {
-		var n = curCell.tdn-startn;
-		var row = RosetteTile[curCell.part].row,
-			col = RosetteTile[curCell.part].col,
-			x,y;
-		x = n%col+1;
-		y = Math.floor(n/col)+1;
-		$("#current_cell_co").show().html("(<span>"+x+"</span>,<span>"+y+"</span>)");
-	} else {
-		$("#current_cell_co").hide();
-	}
-	// 切换style表单
+	// 显示信息
+	$("#part_type").html(RosetteTile[curCell.part].type);
+	$("#part_num").html(curCell.part+1);
 	switch (RosetteTile[curCell.part].type) {
 		case "mosaic":
+			// 计算坐标
+			var row = RosetteTile[curCell.part].row,
+				col = RosetteTile[curCell.part].col,
+				x,y;
+			x = n%col+1;
+			y = Math.floor(n/col)+1;
+			$("#cell_coordinate").show().html("(<span>"+x+"</span>,<span>"+y+"</span>)");
+			// 获取颜色id
+			var colorid = RosetteTile[curCell.part].color[n];
+			// 填充尺寸到input
+			$("#mosaicW input").val(RosetteTile[curCell.part].cellW)
+			$("#mosaicH input").val(RosetteTile[curCell.part].cellH)
+			// 切换style表单
 			$("#lineT").parent(".line").hide();
 			$("#mosaicW").parent(".line").show();
 			$("#mosaicH").parent(".line").show();
 			break;
 		case "line":
+			// 计算坐标
+			$("#cell_coordinate").hide();
+			// 获取颜色id
+			var colorid = RosetteTile[curCell.part].color;
+			// 填充尺寸到input
+			$("#lineT input").val(RosetteTile[curCell.part].thickness)
+			// 切换style表单
 			$("#mosaicW").parent(".line").hide();
 			$("#mosaicH").parent(".line").hide();
 			$("#lineT").parent(".line").show();
 			break;
 	}
-	// 不从RT读取style。
+	// 显示颜色名
+	$("#part_color").html($("#"+colorid).children(".color_name").html());
 };
 
 var clearSelectCell = function() {
@@ -598,10 +611,13 @@ var keyboardOperation = function (event) {
 		cMoveD();
 		break;
 	case 13:
-		applyStyle();
+		fillColor();
 		break;
 	case 32:
-		applyStyle();
+		fillColor();
+		break;
+	case 8:// backspace
+		pickColor();
 		break;
 	case 9:// tab
 		event.preventDefault();
