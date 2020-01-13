@@ -1,0 +1,183 @@
+<!--
+H&Z ROSETTE DESIGNER
+by Hans / H&Z LIFE
+version 2018/8/20
+-->
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="zh-CN">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+	<script type="text/javascript" src="jquery-1.10.2.min.js"></script>
+	<script type="text/javascript" src="jcanvas.min.js"></script>
+	<script type="text/javascript" src="tile.js"></script>
+	<script type="text/javascript" src="main.js"></script>
+
+	<link rel="stylesheet" type="text/css" href="style.css"/>
+	<link rel="stylesheet" type="text/css" href="iconfont/iconfont.css"/>
+
+	<title>H&amp;Z Rosette Designer beta 2.0</title>
+
+</head>
+
+
+
+
+
+<body class="oric">
+
+
+<header><div class="menu_btn"></div></header>
+
+<div class="pads pad_preview default_color color1">
+	<canvas id="rosette" width="1600" height="1600"></canvas>
+</div>
+
+
+
+<div class="pads pad_tool">
+
+
+	<div class="tile_box default_color color1">
+		<div class="tile">
+			<img id="cell_handle_1" class="cell_handle cell_handle_v" src="images/handlev.png" />
+			<img id="cell_handle_2" class="cell_handle cell_handle_v" src="images/handlev.png" />
+			<img id="cell_handle_3" class="cell_handle cell_handle_h" src="images/handleh.png" />
+			<img id="cell_handle_4" class="cell_handle cell_handle_h" src="images/handleh.png" />
+			<div id="RT" class="oric"></div>
+		</div>
+	</div>
+
+
+	<div class="tool_contents">
+
+		<div class="tool_content tool_content_2 tool_content_current">
+			<div class="left_pad">
+
+				<div id="btn_eyedropper" class="btn"></div>
+					<!-- <div id="btn_color" class="btn">
+						<span class="color_preview color1"></span>
+						<span class="btn_txt">name</span>
+					</div> -->
+				<div class="form">
+					<div class="line" style="display: none;">
+						<span class="icon icon_w"></span><div id="mosaicW" class="number_input"><span class="btn number_m">-</span><input type="number" value="0.8" disabled="disabled" /><span class="adornment">mm</span><span class="btn number_a">+</span></div>
+					</div>
+					<div class="line" style="display: none;">
+						<span class="icon icon_h"></span><div id="mosaicH" class="number_input"><span class="btn number_m">-</span><input type="number" value="0.8" disabled="disabled" /><span class="adornment">mm</span><span class="btn number_a">+</span></div>
+					</div>
+					<div class="line" style="display: none;">
+						<span class="icon icon_t"></span><div id="lineT" class="number_input"><span class="btn number_m">-</span><input type="number" value="0.8" disabled="disabled" /><span class="adornment">mm</span><span class="btn number_a">+</span></div>
+					</div>
+				</div>
+
+			</div>
+			<div class="right_pad">
+
+				<div id="btn_apply" class="btn btn_primary" title="(space / enter)">
+					<div class="current_cell_info">[<span id="current_part_num"></span>]<span id="current_cell_co"></span></div>
+					<span class="btn_txt">应用</span>
+				</div>
+
+				<div class="keyboard">
+					<button class="btn key" id="key_right"><span class="icon"></span></button>
+					<div class="center_keyboard">
+						<button class="btn key" id="key_up"><span class="icon"></span></button>
+						<button class="btn key" id="key_down"><span class="icon"></span></button>
+					</div>
+					<button class="btn key" id="key_left"><span class="icon"></span></button>
+				</div>
+
+			</div>
+		</div>
+
+		<div class="tool_content tool_content_4 ">
+			<div class="wrapper">
+				<div class="line line1">
+					<h3>面板材质</h3>
+					<span id="top_s" class="btn btn_select">云杉</span><span id="top_c" class="btn">雪松</span>
+				</div>
+				<div class="line">
+					<h3>虫胶漆效果</h3>
+					<span id="shellac_varnish_switch" class="form_switch"><span class="switch_btn"></span></span>
+				</div>
+				<div class="line">
+					<h3>指板</h3>
+					<span id="fingerboard_switch" class="form_switch "><span class="switch_btn"></span></span>
+				</div>
+				<div class="line line4">
+					<h3>音孔直径</h3>
+					<div id="soundholeD" class="number_input"><span class="btn number_m">-</span><input type="number" value="84" disabled="disabled" /><span class="adornment">mm</span><span class="btn number_a">+</span></div>
+				</div>
+				<div class="line line5 lastline">
+					<h3>音孔边距</h3>
+					<div id="soundholePadding" class="number_input"><span class="btn number_m">-</span><input type="number" value="2" disabled="disabled" /><span class="adornment">mm</span><span class="btn number_a">+</span></div>
+				</div>
+			</div>
+		</div>
+
+	</div>
+	<div class="tool_tabs">
+		<ul>
+			<li id="tool_tab_2" class="tool_tab tool_tab_current"><i class="iconfont icon-design"></i></li><!--
+			--><li id="tool_tab_4" class="tool_tab "><i class="iconfont icon-settings"></i></li>
+		</ul>
+	</div>
+</div>
+
+
+
+
+<!-- 菜单弹框 -->
+<div class="menu_sheet">
+	<ul>
+		<li class="btn">↩ 撤销</li>
+		<li class="btn">🚮 清空</li>
+		<li class="btn">🔧 载入模板…</li>
+		<li class="spline"></li>
+		<li class="btn">导出效果图</li>
+		<li class="btn">导出数据</li>
+		<li class="spline"></li>
+		<li class="btn">提需求、提建议</li>
+		<li class="btn">💪 力挺作者「汉斯」</li>
+		<li class="spline"></li>
+		<li class="signature"><p>H·Z ROSETTE DESIGNER</p><p>beta 2.0</p></li>
+	</ul>
+</div>
+
+<!-- 行列操作弹框 -->
+<div class="action_sheet">
+	<ul>
+		<li id="btn_addrow" class="btn btn_primary"><span>+&nbsp;&nbsp;添加行</span></li>
+		<li id="btn_addlinerow" class="btn"><span>+&nbsp;&nbsp;添加线条</span></li>
+		<li id="btn_addcol" class="btn btn_primary"><span>+&nbsp;&nbsp;添加列</span></li>
+		<li id="btn_delrow" class="btn"><span>删除行</span></li>
+		<li id="btn_delcol" class="btn"><span>删除列</span></li>
+	</ul>
+</div>
+
+
+<!-- 色表弹框 -->
+<div class="color_sheet">
+	<ul>
+		<li id="color1" class="color current_color"><span class="color_thumb color1"></span><span class="color_name">云杉</span></li>
+		<li id="color2" class="color "><span class="color_thumb color2"></span><span class="color_name">雪松</span></li>
+		<li id="color3" class="color "><span class="color_thumb color3"></span><span class="color_name">枫木</span></li>
+		<li id="color4" class="color "><span class="color_thumb color4"></span><span class="color_name">沙比利</span></li>
+		<li id="color5" class="color "><span class="color_thumb color5"></span><span class="color_name">印度玫瑰木</span></li>
+		<li id="color6" class="color "><span class="color_thumb color6"></span><span class="color_name">染色绿</span></li>
+		<li id="color7" class="color "><span class="color_thumb color7"></span><span class="color_name">染色红</span></li>
+		<li id="color8" class="color "><span class="color_thumb color8"></span><span class="color_name">染色黑</span></li>
+	</ul>
+</div>
+
+
+<div class="mask"></div>
+
+
+
+
+
+</body>
+</html>

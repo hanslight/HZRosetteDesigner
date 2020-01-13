@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 22.1.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 44 32" style="enable-background:new 0 0 44 32;" xml:space="preserve">
+<style type="text/css">
+	.st0{display:none;}
+	.st1{display:inline;}
+	.st2{fill:#B57F56;}
+	.st3{fill:#222222;}
+	.st4{clip-path:url(#SVGID_2_);}
+	.st5{fill:#EDCA93;}
+	.st6{fill:#471E07;}
+	.st7{clip-path:url(#SVGID_4_);}
+	.st8{clip-path:url(#SVGID_6_);}
+	.st9{opacity:0.2;}
+	.st10{opacity:0.3;}
+	.st11{clip-path:url(#SVGID_6_);fill:none;stroke:#000000;stroke-miterlimit:10;stroke-opacity:0.3;}
+	.st12{fill:#2E1F1E;}
+	.st13{opacity:0.1;}
+	.st14{clip-path:url(#SVGID_8_);}
+	.st15{clip-path:url(#SVGID_8_);fill:none;stroke:#000000;stroke-miterlimit:10;stroke-opacity:0.3;}
+	.st16{fill:#333333;}
+	.st17{fill:#313131;}
+	.st18{fill:#2B2B2B;}
+	.st19{fill:#2A2A2A;}
+	.st20{fill:#111111;}
+	.st21{fill:#555555;}
+	.st22{fill:#777777;}
+	.st23{fill:#AAAAAA;}
+	.st24{fill:#DDDDDD;}
+	.st25{fill:#EEEEEE;}
+	.st26{fill:#FFB522;}
+	.st27{fill:none;}
+	.st28{fill:#FFEAC2;}
+	.st29{filter:url(#Adobe_OpacityMaskFilter);}
+	.st30{opacity:0.2;mask:url(#SVGID_9_);}
+	.st31{fill:#452D29;}
+	.st32{fill:#65BF60;}
+	.st33{fill:#E03F6E;}
+	.st34{fill:#0D0D0D;}
+	.st35{fill:#FFFFFF;}
+	.st36{fill:none;stroke:#AAAAAA;stroke-miterlimit:10;}
+	.st37{fill:none;stroke:#DDDDDD;stroke-width:1.2;stroke-linecap:round;stroke-miterlimit:10;}
+	.st38{fill:none;stroke:#DDDDDD;stroke-linecap:round;stroke-miterlimit:10;}
+	.st39{opacity:0;}
+	.st40{fill:none;stroke:#AAAAAA;stroke-linecap:round;stroke-miterlimit:10;}
+</style>
+<g id="图层_2" class="st0">
+	<g class="st1">
+		<rect x="-2526" y="-1455" width="4504" height="3800"/>
+	</g>
+	<g class="st1">
+		<rect x="-227.5" y="-42.5" class="st2" width="713" height="256"/>
+		<path class="st3" d="M485-42v255h-712V-42H485 M486-43h-1h-712h-1v1v255v1h1h712h1v-1V-42V-43L486-43z"/>
+	</g>
+</g>
+<g id="图层_1">
+	<g>
+		<g>
+			<path class="st6" d="M41,6H3C2.45,6,2,5.55,2,5V3c0-0.55,0.45-1,1-1h38c0.55,0,1,0.45,1,1v2C42,5.55,41.55,6,41,6z"/>
+		</g>
+		<g>
+			<path class="st6" d="M41,18H3c-0.55,0-1-0.45-1-1v-2c0-0.55,0.45-1,1-1h38c0.55,0,1,0.45,1,1v2C42,17.55,41.55,18,41,18z"/>
+		</g>
+		<g>
+			<path class="st6" d="M41,30H3c-0.55,0-1-0.45-1-1v-2c0-0.55,0.45-1,1-1h38c0.55,0,1,0.45,1,1v2C42,29.55,41.55,30,41,30z"/>
+		</g>
+	</g>
+</g>
+</svg>
