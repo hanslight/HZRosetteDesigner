@@ -4,7 +4,7 @@
 // last update 2019.8.16
 // version beta 3.0
 
-$( function () {
+// $( function () {
 
 var HZRosette = {};
 
@@ -20,8 +20,8 @@ var shellacMode = false, // 虫胶漆效果
 	showfb = false; // 指板预览
 
 
-var canvasDimention = 200, // 画布宽高（mm）正方形；init会自动设置
-	previewScale = 5; // 比例尺 px:mm
+var canvasDimention = 135, // 画布宽高（mm）正方形；init会自动设置
+	previewScale = 4; // 比例尺 px:mm
 
 var inlayAccuracy = .07;
 
@@ -228,7 +228,7 @@ var rosettePreview = {
 		HZRosette.diameter = rD;
 
 		// 新建画布
-		canvasDimention = rD * 1.5; // 自动调整画布大小
+		canvasDimention = rD * 1.9; // 自动调整画布大小
 		var cs = canvasDimention * previewScale;
 		rcX = rcY = cs / 2;
 		$(".canvas_box").html("<canvas id='rosette' width='"+cs+"' height='"+cs+"'></canvas>");
@@ -474,7 +474,6 @@ var preview = {
 
 
 
-rosettePreview.init().resize().generate();
 // $(window).resize(rosettePreview.resize);
 
 
@@ -500,5 +499,4 @@ rosettePreview.init().resize().generate();
 
 
 
-
-});
+;
