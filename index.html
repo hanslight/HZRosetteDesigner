@@ -1,7 +1,7 @@
 <!--
 H&Z ROSETTE DESIGNER
 by Hans / H&Z LIFE
-version 2018/8/21
+version 2018/9/3
 -->
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -10,14 +10,14 @@ version 2018/8/21
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 	<script type="text/javascript" src="jquery-1.10.2.min.js"></script>
-	<script type="text/javascript" src="jcanvas.min.js"></script>
+	<script type="text/javascript" src="svg.min.js"></script>
 	<script type="text/javascript" src="tile.js"></script>
 	<script type="text/javascript" src="main.js"></script>
 
 	<link rel="stylesheet" type="text/css" href="style.css"/>
 	<link rel="stylesheet" type="text/css" href="iconfont/iconfont.css"/>
 
-	<title>H&amp;Z Rosette Designer beta 2.5</title>
+	<title>H&amp;Z Rosette Designer beta 2.6</title>
 
 </head>
 
@@ -31,7 +31,9 @@ version 2018/8/21
 <header><div class="menu_btn"></div></header>
 
 <div class="pads pad_preview default_color color1">
-	<canvas id="rosette" width="1600" height="1600"></canvas>
+	<div id="rosette" class="SVG_box"></div>
+	<div id="fingerboard" class="SVG_box"></div>
+	<div id="soundhole" class="SVG_box"></div>
 </div>
 
 
@@ -93,7 +95,7 @@ version 2018/8/21
 				<!-- 填色按钮 -->
 				<div class="btn_group_primary">
 					<div id="btn_color" class="btn btn_primary adornment" title="(Tab)"><span class="color_preview color1"></span></div>
-					<div id="btn_apply" class="btn btn_primary" title="(Space / Enter)">
+					<div id="btn_fillcolor" class="btn btn_primary" title="(Space / Enter)">
 						<span class="btn_txt">填<br />色</span>
 					</div>
 				</div>
@@ -158,16 +160,16 @@ version 2018/8/21
 <div class="menu_sheet">
 	<ul>
 		<li class="btn">↩ 撤销</li>
-		<li class="btn">🚮 清空</li>
+		<li class="btn" id="menuClear">🚮 清空</li>
 		<li class="btn">🔧 载入模板…</li>
 		<li class="spline"></li>
 		<li class="btn">导出效果图</li>
-		<li class="btn">导出数据</li>
+		<li class="btn" id="menuExportData">导出数据</li>
 		<li class="spline"></li>
 		<li class="btn">提需求、提建议</li>
 		<li class="btn">💪 力挺作者「汉斯」</li>
 		<li class="spline"></li>
-		<li class="signature"><p>H·Z ROSETTE DESIGNER</p><p>beta 2.5</p></li>
+		<li class="signature"><p>H·Z ROSETTE DESIGNER</p><p>beta 2.6 @ 2018-8</p></li>
 	</ul>
 </div>
 

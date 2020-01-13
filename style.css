@@ -2,7 +2,7 @@
 H&Z ROSETTE DESIGNER CSS
 by Hans
 init 2018.8.1
-last update 2018.8.20
+last update 2018.9.3
 */
 
 * {
@@ -138,6 +138,35 @@ header .menu_btn:active {
 	background-color: rgba(71,30,7,.2);
 	border: none;
 }
+
+
+
+
+
+
+/* circle:hover {
+	stroke: #111;
+	transition:  .3s;
+} */
+svg {
+	transform-origin: center;
+	transition: transform .36s;
+}
+#fingerboard {
+	opacity: 0;
+	transition: opacity .36s;
+}
+#fingerboard svg {	
+	transform-origin: bottom center;
+}
+.SVG_box {
+	position: absolute;
+	text-align: left;
+}
+
+
+
+
 
 
 .tile_box {
@@ -390,14 +419,14 @@ header .menu_btn:active {
 	right: 0;
 	width: 46px;
 }
-.tool_content_2 .pad_2 #btn_apply {
+.tool_content_2 .pad_2 #btn_fillcolor {
 	display: block;
 	height: 74px;/*+1 for border collapse*/
 	font-size: 15px;
 	line-height: 18px;
 	position: relative;
 }
-.tool_content_2 .pad_2 #btn_apply .btn_txt {
+.tool_content_2 .pad_2 #btn_fillcolor .btn_txt {
 	position: absolute;
 	right: 6px;
 	bottom: 6px;
@@ -573,7 +602,7 @@ header .menu_btn:active {
 	position: absolute;
 	z-index: 9;
 	display: none;
-	overflow: scroll;
+	/*overflow: scroll;*/
 
 	top: 44px;
 	right: 8px;
@@ -724,51 +753,67 @@ canvas {
 /* 色表-原色 */
 .oric .color1 {
 	background: #ffecb3;/*云杉*/
+	fill: #ffecb3;
 }
 .oric .color2 {
 	background: #e8a573;
+	fill: #e8a573;
 }
 .oric .color3 {
 	background: #fff3e3;/*枫木*/
+	fill: #fff3e3;
 }
 .oric .color4 {
 	background: #a76849;/*沙比利*/
+	fill: #a76849;
 }
 .oric .color5 {
 	background: #482625;/*印枚*/
+	fill: #482625;
 }
 .oric .color6 {
 	background: #8ccc77;/*绿*/
+	fill: #8ccc77;
 }
 .oric .color7 {
 	background: #e2506a;/*红*/
+	fill: #e2506a;
 }
 .oric .color8 {
 	background: #090909;
+	fill: #090909;
 }
 
 /* 色表-漆色 */
 .shellac .color1 {
 	background: #ffd98d;
+	fill: #ffd98d;
 }
 .shellac .color2 {
 	background: #b5794e;
+	fill: #b5794e;
 }
 .shellac .color3 {
 	background: #ffe3bd;
+	fill: #ffe3bd;
 }
 .shellac .color4 {
 	background: #843914;
+	fill: #843914;
 }
 .shellac .color5 {
 	background: #461f1c;
+	fill: #461f1c;
 }
 .shellac .color6 {
 	background: #8fb537;
+	fill: #8fb537;
 }
 .shellac .color7 {
 	background: #e63939;
+	fill: #e63939;
 }
 .shellac .color8 {
 	background: #040301;
+	fill: #040301;
 }

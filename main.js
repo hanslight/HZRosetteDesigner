@@ -1,7 +1,7 @@
 // H&Z ROSETTE DESIGNER JS
 // by Hans
 // init 2018.8.1
-// last update 2018.8.20
+// last update 2018.9.10
 
 $( function () {
 
@@ -30,12 +30,11 @@ selectColor("color1");
 // canvas初始化
 
 setTimeout(function(){
-	refreshCanvas();
-	$("#rosette").show();
-	resizeCanvas();
+	preview.create().place();
 },600);
 
 
+$(window).resize(preview.place)
 
 
 
@@ -107,8 +106,7 @@ $(".menu_btn").bind("click",callMenuSheet);
 
 
 $(".tool_content_4 input").bind("blur", function() {
-	refreshCanvas();
-	resizeCanvas();
+	preview.create().place();
 });
 
 
@@ -191,12 +189,12 @@ $(".color_sheet .color").bind("click", function() {
 $("#btn_addrow").bind("click", function() {
 	addRow(place,"mosaic");
 	setTimeout(hideActionSheet,70);
-	resizeCanvas();
+	preview.place();
 });
 $("#btn_addlinerow").bind("click", function() {
 	addRow(place,"line");
 	setTimeout(hideActionSheet,70);
-	resizeCanvas();
+	preview.place();
 });
 $("#btn_addcol").bind("click", function() {
 	addCol(place);
@@ -206,7 +204,7 @@ $("#btn_delrow").bind("click", function() {
 	if (Trow > 1) {
 	delRow(place);
 	setTimeout(hideActionSheet,70);
-	resizeCanvas();
+	preview.place();
 	};
 });
 $("#btn_delcol").bind("click", function() {
@@ -240,8 +238,8 @@ $(".tile_box").bind("click", clearSelectCell);
 // 取色
 $("#btn_eyedropper").bind("click", pickColor);
 
-// 应用按钮
-$("#btn_apply").bind("click", function() {
+// 填色按钮
+$("#btn_fillcolor").bind("click", function() {
 	fillColor();
 	return false;
 });
@@ -283,6 +281,21 @@ $("#shellac_varnish_switch").bind("click",function() {
 });
 
 
+// 指板开关
+$("#fingerboard_switch").bind("click",function() {
+	switch (showfb) {
+		case false:
+			$("#fingerboard_switch").addClass("form_switch_on");
+			showfb = true;
+			$("#fingerboard").css("opacity",1);
+			break;
+		case true:
+			$("#fingerboard_switch").removeClass("form_switch_on");
+			showfb = false;
+			$("#fingerboard").css("opacity",0);
+			break;
+	}
+});
 
 
 // 数字input加减
@@ -293,8 +306,7 @@ $("#mosaicW .number_m").bind("click",function() {
 	RosetteTile[curCell.part].cellW = v;
 	setTile();
 	selectCell(curCell);
-	refreshCanvas();
-	resizeCanvas();
+	preview.update();
 });
 $("#mosaicW .number_a").bind("click",function() {
 	var v = $(this).siblings("input").val();
@@ -303,8 +315,7 @@ $("#mosaicW .number_a").bind("click",function() {
 	RosetteTile[curCell.part].cellW = v;
 	setTile();
 	selectCell(curCell);
-	refreshCanvas();
-	resizeCanvas();
+	preview.update();
 });
 
 $("#mosaicH .number_m").bind("click",function() {
@@ -314,8 +325,7 @@ $("#mosaicH .number_m").bind("click",function() {
 	RosetteTile[curCell.part].cellH = v;
 	setTile();
 	selectCell(curCell);
-	refreshCanvas();
-	resizeCanvas();
+	preview.update();
 });
 $("#mosaicH .number_a").bind("click",function() {
 	var v = $(this).siblings("input").val();
@@ -324,8 +334,7 @@ $("#mosaicH .number_a").bind("click",function() {
 	RosetteTile[curCell.part].cellH = v;
 	setTile();
 	selectCell(curCell);
-	refreshCanvas();
-	resizeCanvas();
+	preview.update();
 });
 
 $("#lineT .number_m").bind("click",function() {
@@ -335,8 +344,7 @@ $("#lineT .number_m").bind("click",function() {
 	RosetteTile[curCell.part].thickness = v;
 	setTile();
 	selectCell(curCell);
-	refreshCanvas();
-	resizeCanvas();
+	preview.update();
 });
 $("#lineT .number_a").bind("click",function() {
 	var v = $(this).siblings("input").val();
@@ -345,8 +353,7 @@ $("#lineT .number_a").bind("click",function() {
 	RosetteTile[curCell.part].thickness = v;
 	setTile();
 	selectCell(curCell);
-	refreshCanvas();
-	resizeCanvas();
+	preview.update();
 });
 
 //////
@@ -355,30 +362,26 @@ $("#soundholeD .number_m").bind("click",function() {
 	var v = $(this).siblings("input").val();
 	v = inputStepMinus(v,1,0);
 	$(this).siblings("input").val(v);
-	refreshCanvas();
-	resizeCanvas();
+	preview.update();
 });
 $("#soundholeD .number_a").bind("click",function() {
 	var v = $(this).siblings("input").val();
 	v = inputStepAdd(v,1,150);
 	$(this).siblings("input").val(v);
-	refreshCanvas();
-	resizeCanvas();
+	preview.update();
 });
 
 $("#soundholePadding .number_m").bind("click",function() {
 	var v = $(this).siblings("input").val();
-	v = inputStepMinus(v,1,0);
+	v = inputStepMinus(v,.1,0);
 	$(this).siblings("input").val(v);
-	refreshCanvas();
-	resizeCanvas();
+	preview.update();
 });
 $("#soundholePadding .number_a").bind("click",function() {
 	var v = $(this).siblings("input").val();
-	v = inputStepAdd(v,1,100);
+	v = inputStepAdd(v,.1,100);
 	$(this).siblings("input").val(v);
-	refreshCanvas();
-	resizeCanvas();
+	preview.update();
 });
 
 
@@ -401,6 +404,23 @@ $(".tool_tab").bind("click", function () {
 		$(".cell_handle").hide();
 		$(document).unbind("keydown");
 	};
+});
+
+
+
+
+// 菜单
+$("#menuExportData").bind("click", function() {
+	hideMenuSheet();
+	var HZRObj = {HZRData : RosetteTile};
+	var HZRJSON = JSON.stringify(HZRObj);
+	prompt("当前设计数据如下，请复制 - HZ Rosette Designer",HZRJSON);
+});
+$("#menuClear").bind("click", function() {
+	var confirm = window.confirm("清空了就回不来了哦");
+	if (confirm) {
+		window.location.reload();
+	}
 });
 
 
